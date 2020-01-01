@@ -16,12 +16,11 @@ class MAIN(QtWidgets.QWidget):
         self.setMinimumSize(720, 360)
 
         self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setContentsMargins(0, 26, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
 
         self.Splitter = QtWidgets.QSplitter()
         self.Splitter.setOrientation(QtCore.Qt.Horizontal)
-
 
         self.treeLayout = QtWidgets.QVBoxLayout()
         self.treeLayout.setObjectName("verticalLayout")
@@ -147,7 +146,7 @@ class MAIN(QtWidgets.QWidget):
 
                 'QTabBar::tab:top:selected {'
                     'border-bottom-color: none;'
-                    'color: #BBB;'
+                    'color: #FFF;'
                 '}'
 
                 'QTabBar::tab:bottom:selected {'
@@ -182,6 +181,19 @@ class MAIN(QtWidgets.QWidget):
 
         self.Tab1.initStyles(self.HelpColor)
 
+
+        self.bar = QtWidgets.QMenuBar(self)
+        self.bar.setFixedHeight(26)
+        self.bar.setStyleSheet(BAR_STYLE)
+        self.menuFile = self.bar.addMenu('File')
+        self.menuHelp = self.bar.addMenu('Help')
+        self.menuFile.setStyleSheet(MENU_STYLE)
+        self.menuHelp.setStyleSheet(MENU_STYLE)
+        self.actionAdd = QtWidgets.QAction("Add", self)
+        self.actionAdd.setObjectName("actionAdd")
+        self.menuFile.addAction(self.actionAdd)
+        
+
     def __init__(self):
         super(MAIN, self).__init__()
         self.setWindowTitle("Simple SQL")
@@ -190,67 +202,7 @@ class MAIN(QtWidgets.QWidget):
         self.borderColor2 = "lightGray"
         self.treeBgColor = "FFF"
         self.setupUi()
-        self.setStyleSheet(
-            '''
-                    QWidget{
-                        outline: 0;
-                        font-family: Roboto;
-                    }
-                    QScrollBar:vertical {
-                                        border: 1px solid #dddddd;
-                                        background:white;
-                                        width:10px;
-                                        margin: 0px 0px 0px 0px;
-                                        border-radius: 4px;
-                    }
-                    QScrollBar::handle:vertical {
-                                        background: rgb(120, 120, 120);
-                                        min-height: 0px;
-                                        border-radius: 4px;
-                    }
-                    QScrollBar::add-line:vertical {
-                                        background: rgb(120, 120, 120);
-                                        height: 0px;
-                                        subcontrol-position: bottom;
-                                        subcontrol-origin: margin;
-                                        border-radius: 4px;
-                    }
-                    QScrollBar::sub-line:vertical {
-                                        background: rgb(120, 120, 120);
-                                        height: 0 px;
-                                        subcontrol-position: top;
-                                        subcontrol-origin: margin;
-                                        border-radius: 4px;
-                    }
-
-                    QScrollBar:horizontal {
-                                        border: 1px solid #dddddd;
-                                        background:white;
-                                        height:10px;
-                                        margin: 0px 0px 0px 0px;
-                                        border-radius: 4px;
-                    }
-                    QScrollBar::handle:horizontal {
-                                        background: rgb(120, 120, 120);
-                                        min-width: 0px;
-                                        border-radius: 4px;
-                    }
-                    QScrollBar::add-line:horizontal {
-                                        background: rgb(120, 120, 120);
-                                        width: 0px;
-                                        subcontrol-position: bottom;
-                                        subcontrol-origin: margin;
-                                        border-radius: 4px;
-                    }
-                    QScrollBar::sub-line:horizontal {
-                                        background: rgb(120, 120, 120);
-                                        width: 0 px;
-                                        subcontrol-position: top;
-                                        subcontrol-origin: margin;
-                                        border-radius: 4px;
-                    }
-            '''
-        )
+        self.setStyleSheet(TOTAL_STYLE)
         self.show()
 
 
