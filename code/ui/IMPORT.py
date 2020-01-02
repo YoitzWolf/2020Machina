@@ -6,6 +6,8 @@ import time
 import math
 
 
+HELP_COLOR = "EEB8EE"
+
 MENU_STYLE = """
                 QMenu::item{
                     padding: 4px 10px;

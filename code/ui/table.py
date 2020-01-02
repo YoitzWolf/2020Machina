@@ -1,4 +1,5 @@
 from IMPORT import *
+from hoverButton import HoverButton
 
 class TableStruct(QtWidgets.QWidget):
     def __init__(self):
@@ -39,12 +40,12 @@ class TableStruct(QtWidgets.QWidget):
 
         self.gridLayout.addWidget(self.line_3, 0, 8, 1, 1)
 
-        self.notOkButton = QtWidgets.QPushButton(QtGui.QIcon("images/No.svg"), "")
+        self.notOkButton = HoverButton(QtGui.QIcon("images/No.svg"), QtGui.QIcon("images/NoHover.svg"))
         self.notOkButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.notOkButton.setObjectName("notOkButton")
         self.gridLayout.addWidget(self.notOkButton, 0, 10, 1, 1)
 
-        self.okButton = QtWidgets.QPushButton(QtGui.QIcon("images/Ok.svg"), "")
+        self.okButton = HoverButton(QtGui.QIcon("images/Ok.svg"), QtGui.QIcon("images/OkHover.svg"))
         self.okButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.okButton.setObjectName("okButton")
         self.gridLayout.addWidget(self.okButton, 0, 9, 1, 1)
@@ -53,8 +54,47 @@ class TableStruct(QtWidgets.QWidget):
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(10)
         self.tableWidget.setRowCount(10)
+        self.gridLayout.addWidget(self.tableWidget, 2, 0, 1, 11)
+
+        self.Up = HoverButton(QtGui.QIcon("images/Up.svg"), QtGui.QIcon("images/UpHover.svg"))
+        self.Up.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.Up.setObjectName("Up")
+        self.gridLayout.addWidget(self.Up, 0, 6, 1, 1)
+
+        self.Down = HoverButton(QtGui.QIcon("images/Down.svg"), QtGui.QIcon("images/DownHover.svg"))
+        self.Down.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.Down.setObjectName("Down")
+        self.gridLayout.addWidget(self.Down, 0, 7, 1, 1)
+
+
+        self.ReloadTableButton = HoverButton(QtGui.QIcon("images/Re.svg"), QtGui.QIcon("images/ReHover.svg"))
+        self.ReloadTableButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.ReloadTableButton.setObjectName("ReloadTableButton")
+        self.gridLayout.addWidget(self.ReloadTableButton, 0, 0, 1, 1)
+
+        self.DeleteColumnButton = HoverButton(QtGui.QIcon("images/Minus.svg"), QtGui.QIcon("images/MinusHover.svg"))
+        self.DeleteColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.DeleteColumnButton.setObjectName("DeleteColumnButton")
+        self.gridLayout.addWidget(self.DeleteColumnButton, 0, 4, 1, 1)
+
+        self.ReductColumnButton = HoverButton(QtGui.QIcon("images/Pen.svg"), QtGui.QIcon("images/PenHover.svg"))
+        self.ReductColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.ReductColumnButton.setObjectName("ReductColumnButton")
+        self.gridLayout.addWidget(self.ReductColumnButton, 0, 3, 1, 1)
+
+        self.AddColumnButton = HoverButton(QtGui.QIcon("images/Plus.svg"), QtGui.QIcon("images/PlusHover.svg"))
+        self.AddColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.AddColumnButton.setObjectName("AddColumnButton")
+        self.gridLayout.addWidget(self.AddColumnButton, 0, 2, 1, 1)
+
+        self.setLayout(self.gridLayout)
+
+    def initStyles(self, helpColor):
         self.tableWidget.setStyleSheet(
-        '''
+            "QTableWidget::item:hover{"
+                f"background-color: #{helpColor};"
+            "}"
+            '''
             QTableWidget{
                 background-color: rgb(238, 238, 238);
             }
@@ -66,11 +106,7 @@ class TableStruct(QtWidgets.QWidget):
             QTableWidget::item{
                 background-color: rgb(238, 238, 238);
             }
-            QTableWidget::item:selected{
-                background-color: rgb(150, 150, 150);
-                color: black;
-                font-size: 10pt;
-            }
+            
             QTableWidget::item:selected{
                 background-color: rgb(200, 200, 200);
                 color: rgb(1, 1, 1);
@@ -82,43 +118,8 @@ class TableStruct(QtWidgets.QWidget):
                   border: 0px;
             }
 
-        ''')
-        self.gridLayout.addWidget(self.tableWidget, 2, 0, 1, 11)
-
-        self.Up = QtWidgets.QPushButton(QtGui.QIcon("images/Up.svg"), "")
-        self.Up.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.Up.setObjectName("Up")
-        self.gridLayout.addWidget(self.Up, 0, 6, 1, 1)
-
-        self.Down = QtWidgets.QPushButton(QtGui.QIcon("images/Down.svg"), "")
-        self.Down.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.Down.setObjectName("Down")
-        self.gridLayout.addWidget(self.Down, 0, 7, 1, 1)
-
-
-        self.ReloadTableButton = QtWidgets.QPushButton(QtGui.QIcon("images/Re.svg"), "")
-        self.ReloadTableButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.ReloadTableButton.setObjectName("ReloadTableButton")
-        self.gridLayout.addWidget(self.ReloadTableButton, 0, 0, 1, 1)
-
-        self.DeleteColumnButton = QtWidgets.QPushButton(QtGui.QIcon("images/Minus.svg"), "")
-        self.DeleteColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.DeleteColumnButton.setObjectName("DeleteColumnButton")
-        self.gridLayout.addWidget(self.DeleteColumnButton, 0, 4, 1, 1)
-
-        self.ReductColumnButton = QtWidgets.QPushButton(QtGui.QIcon("images/Pen.svg"), "")
-        self.ReductColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.ReductColumnButton.setObjectName("ReductColumnButton")
-        self.gridLayout.addWidget(self.ReductColumnButton, 0, 3, 1, 1)
-
-        self.AddColumnButton = QtWidgets.QPushButton(QtGui.QIcon("images/Plus.svg"), "")
-        self.AddColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.AddColumnButton.setObjectName("AddColumnButton")
-        self.gridLayout.addWidget(self.AddColumnButton, 0, 2, 1, 1)
-
-        self.setLayout(self.gridLayout)
-
-    def initStyles(self, helpColor):
+        '''
+        )
         self.setStyleSheet(
             "QFrame{"
                 "border-left: 1px solid black;"
@@ -141,15 +142,12 @@ class TableStruct(QtWidgets.QWidget):
             "}"
             "QPushButton{"
                 "margin: 0;"
-                "padding-bottom: 4px;"
-            "}"
-            "QPushButton:hover{"
-                "border-bottom: 1px solid black;"
+                "padding-bottom: 10px;"
             "}"
             "QPushButton:pressed{"
+                "padding: 0px;"
                 "padding-top: 10px;"
             "}"
-
         )
 
 

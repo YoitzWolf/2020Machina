@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'untitled.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.3
-#
-# WARNING! All changes made in this file will be lost!
-
 from IMPORT import *
 from table import TableStruct
+from treeItem import TreeItem
 
 class MAIN(QtWidgets.QWidget):
+    def resizeEvent(self, event):
+        self.treeWidget.setMaximumWidth(self.width()*0.25)
+
     def setupUi(self):
         self.setObjectName("main")
         self.resize(1080, 720)
@@ -40,11 +36,11 @@ class MAIN(QtWidgets.QWidget):
             "QTreeWidget{"
                 "border: 0px;"
                 "padding: 5px;"
-                f"background-color: #FFF;"
+                "background-color: #FFF;"
             "}"
         )
         self.Splitter.addWidget(self.treeWidget)
-        
+        self.treeWidget.setMaximumWidth(self.width()*0.3)
 
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
@@ -56,9 +52,13 @@ class MAIN(QtWidgets.QWidget):
         self.tab.addTab(self.Tab1, "Structure")
 
 
-        self.Tab2 = QtWidgets.QWidget()
+        self.Tab2 = TableStruct()
         self.Tab2.setObjectName("Tab2")
         self.tab.addTab(self.Tab2, "Data")
+
+        self.Tab3 = QtWidgets.QWidget()
+        self.Tab3.setObjectName("Tab3")
+        self.tab.addTab(self.Tab3, "Smth More")
 
         self.verticalLayout.addWidget(self.tab)
         self.TabWidget = QtWidgets.QWidget()
@@ -85,11 +85,11 @@ class MAIN(QtWidgets.QWidget):
                 '}'
 
                 'QTabWidget::tab-bar:left {'
-                    'right: 1px;'
+                    'right: 0px;'
                 '}'
 
                 'QTabWidget::tab-bar:right {'
-                    'left: 1px;'
+                    'left: 0px;'
                 '}'
 
                 'QTabBar::tab {'
@@ -99,11 +99,11 @@ class MAIN(QtWidgets.QWidget):
                 '}'
 
                 'QTabBar::tab:top:first{'
-                    'border-top-left-radius: 20px;'
+                    'border-top-left-radius: 10px;'
                 '}'
 
                 'QTabBar::tab:top:last{'
-                    'border-top-right-radius: 20px;'
+                    'border-top-right-radius: 10px;'
                 '}'
                 'QTabBar::tab:top:last:selected{'
                     "right: 10px;"
@@ -113,7 +113,10 @@ class MAIN(QtWidgets.QWidget):
                     "width: 85px;"
                     "padding-left: 5px;"
                 '}'
-
+                'QTabBar::tab:top:selected{'
+                    "width: 85px;"
+                    "padding-right: 5px;"
+                '}'
                 'QTabBar::tab:selected {'
                     'background: #111;'
                     'border-top-left-radius: 1px;'
@@ -174,12 +177,13 @@ class MAIN(QtWidgets.QWidget):
             "}"
             )
         self.Splitter.setHandleWidth(0);
-
         self.Splitter.setContentsMargins(0, 0, 0, 0)
+
         self.horizontalLayout.addWidget(self.Splitter)
         self.setLayout(self.horizontalLayout)
 
         self.Tab1.initStyles(self.HelpColor)
+        self.Tab2.initStyles(self.HelpColor)
 
 
         self.bar = QtWidgets.QMenuBar(self)
@@ -189,20 +193,85 @@ class MAIN(QtWidgets.QWidget):
         self.menuHelp = self.bar.addMenu('Help')
         self.menuFile.setStyleSheet(MENU_STYLE)
         self.menuHelp.setStyleSheet(MENU_STYLE)
-        self.actionAdd = QtWidgets.QAction("Add", self)
-        self.actionAdd.setObjectName("actionAdd")
-        self.menuFile.addAction(self.actionAdd)
+
+        self.actionOpen = QtWidgets.QAction("Open", self)
+        self.actionOpen.setObjectName("actionOpen")
+        self.menuFile.addAction(self.actionOpen)
+        self.actionNew = QtWidgets.QAction("New", self)
+        self.actionNew.setObjectName("actionNew")
+        self.menuFile.addAction(self.actionNew)
+        self.actionClose = QtWidgets.QAction("Close", self)
+        self.actionClose.setObjectName("actionClose")
+        self.menuFile.addAction(self.actionClose)
         
 
     def __init__(self):
         super(MAIN, self).__init__()
         self.setWindowTitle("Simple SQL")
-        self.setWindowIcon(QtGui.QIcon("images/LogoGreen.svg"))
-        self.HelpColor = "EEB8EE"
+        self.setWindowIcon(QtGui.QIcon("images/LogoBlack.svg"))
+        self.HelpColor = HELP_COLOR
         self.borderColor2 = "lightGray"
         self.treeBgColor = "FFF"
         self.setupUi()
         self.setStyleSheet(TOTAL_STYLE)
+        
+        self.tree.setColumnCount(1)
+        self.tree.addTopLevelItem(TreeItem("base", parent=self.tree))
+        self.tree.addTopLevelItem(TreeItem("base", parent=self.tree))
+        
+        self.tree.setStyleSheet(
+            "QTreeWidget::item{"
+                "padding: 2px;"
+                "border-radius: 5px;"
+                "background: lightGray;"
+                "margin-bottom: 5px;"
+            "}"
+            "QTreeView::item:open{"
+                "background: #555;"
+                "color: #FFF"
+            "}"
+            "QTreeView::item:!selected{"
+                "background: lightGray;"
+            "}"
+            "QTreeView:selected{"
+                "background: #111;"
+                "color: #FFF"
+            "}"
+            "QTreeView::item:hover:!open{"
+                f"background: #{HELP_COLOR};"
+            "}"
+            "QTreeView::item:open:!selected {"
+                "background: #555;"
+            "}"
+            "QTreeView::item:!open:selected {"
+                "background: #111;"
+                "color: #FFF;"
+            "}"
+            "QTreeWidget::branch{"
+                "margin-right: 5px;"
+                "margin-bottom: 5px;"
+            "}"
+            "QTreeView::branch:has-siblings:!adjoins-item{"
+                "image: none;"
+            "}"
+            "QTreeView::branch:!has-children:!has-siblings:adjoins-item {"
+                "image: none;"
+            "}"
+
+            "QTreeView::branch:has-siblings:adjoins-item{"
+                "image: none;"
+            "}"
+            "QTreeView::branch:has-children:!has-siblings:closed,"
+            "QTreeView::branch:closed:has-children:has-siblings {"
+            "    image: url(images/SQL.svg);"
+            "}"
+
+            "QTreeView::branch:open:has-children:!has-siblings,"
+            "QTreeView::branch:open:has-children:has-siblings  {"
+            "        image: url(images/SQL_ACTIVE.svg);"
+            "}"
+        )
+
         self.show()
 
 
