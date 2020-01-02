@@ -1,5 +1,4 @@
-from IMPORT import *
-
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 class TreeItem(QtWidgets.QTreeWidgetItem):
 	def createChildren(self):

@@ -1,5 +1,4 @@
-from IMPORT import *
-
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 class HoverButton(QtWidgets.QPushButton):
     def __init__(self, defaultImage, hoverImage="", pressedImage=""):

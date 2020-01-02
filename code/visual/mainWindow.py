@@ -1,6 +1,6 @@
-from IMPORT import *
-from table import TableStruct
-from treeItem import TreeItem
+from visual.IMPORT.IMPORT import *
+from visual.widgets.table import TableStruct
+from visual.widgets.treeItem import TreeItem
 
 class MAIN(QtWidgets.QWidget):
     def resizeEvent(self, event):
@@ -207,18 +207,17 @@ class MAIN(QtWidgets.QWidget):
 
     def __init__(self):
         super(MAIN, self).__init__()
+        self.setUp()
+
+    def setUp(self):
         self.setWindowTitle("Simple SQL")
-        self.setWindowIcon(QtGui.QIcon("images/LogoBlack.svg"))
+        self.setWindowIcon(QtGui.QIcon("visual/images/LogoBlack.svg"))
         self.HelpColor = HELP_COLOR
         self.borderColor2 = "lightGray"
         self.treeBgColor = "FFF"
         self.setupUi()
         self.setStyleSheet(TOTAL_STYLE)
-        
         self.tree.setColumnCount(1)
-        self.tree.addTopLevelItem(TreeItem("base", parent=self.tree))
-        self.tree.addTopLevelItem(TreeItem("base", parent=self.tree))
-        
         self.tree.setStyleSheet(
             "QTreeWidget::item{"
                 "padding: 2px;"
@@ -263,20 +262,23 @@ class MAIN(QtWidgets.QWidget):
             "}"
             "QTreeView::branch:has-children:!has-siblings:closed,"
             "QTreeView::branch:closed:has-children:has-siblings {"
-            "    image: url(images/SQL.svg);"
+            "    image: url(visual/images/SQL.svg);"
             "}"
 
             "QTreeView::branch:open:has-children:!has-siblings,"
             "QTreeView::branch:open:has-children:has-siblings  {"
-            "        image: url(images/SQL_ACTIVE.svg);"
+            "        image: url(visual/images/SQL_ACTIVE.svg);"
             "}"
         )
 
-        self.show()
-
 
 if __name__ == '__main__':
+    from IMPORT.IMPORT import *
+    from widgets.table import TableStruct
+    from widgets.treeItem import TreeItem
+    from widgets.hoverButton import HoverButton
     app = QtWidgets.QApplication(sys.argv)
     ex = MAIN()
+    ex.show()
     sys.exit(app.exec_())
 

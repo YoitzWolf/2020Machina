@@ -1,5 +1,5 @@
-from IMPORT import *
-from hoverButton import HoverButton
+from visual.widgets.hoverButton import HoverButton
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 class TableStruct(QtWidgets.QWidget):
     def __init__(self):
@@ -40,12 +40,12 @@ class TableStruct(QtWidgets.QWidget):
 
         self.gridLayout.addWidget(self.line_3, 0, 8, 1, 1)
 
-        self.notOkButton = HoverButton(QtGui.QIcon("images/No.svg"), QtGui.QIcon("images/NoHover.svg"))
+        self.notOkButton = HoverButton(QtGui.QIcon("visual/images/No.svg"), QtGui.QIcon("visual/images/NoHover.svg"))
         self.notOkButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.notOkButton.setObjectName("notOkButton")
         self.gridLayout.addWidget(self.notOkButton, 0, 10, 1, 1)
 
-        self.okButton = HoverButton(QtGui.QIcon("images/Ok.svg"), QtGui.QIcon("images/OkHover.svg"))
+        self.okButton = HoverButton(QtGui.QIcon("visual/images/Ok.svg"), QtGui.QIcon("visual/images/OkHover.svg"))
         self.okButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.okButton.setObjectName("okButton")
         self.gridLayout.addWidget(self.okButton, 0, 9, 1, 1)
@@ -56,33 +56,33 @@ class TableStruct(QtWidgets.QWidget):
         self.tableWidget.setRowCount(10)
         self.gridLayout.addWidget(self.tableWidget, 2, 0, 1, 11)
 
-        self.Up = HoverButton(QtGui.QIcon("images/Up.svg"), QtGui.QIcon("images/UpHover.svg"))
+        self.Up = HoverButton(QtGui.QIcon("visual/images/Up.svg"), QtGui.QIcon("visual/images/UpHover.svg"))
         self.Up.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.Up.setObjectName("Up")
         self.gridLayout.addWidget(self.Up, 0, 6, 1, 1)
 
-        self.Down = HoverButton(QtGui.QIcon("images/Down.svg"), QtGui.QIcon("images/DownHover.svg"))
+        self.Down = HoverButton(QtGui.QIcon("visual/images/Down.svg"), QtGui.QIcon("visual/images/DownHover.svg"))
         self.Down.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.Down.setObjectName("Down")
         self.gridLayout.addWidget(self.Down, 0, 7, 1, 1)
 
 
-        self.ReloadTableButton = HoverButton(QtGui.QIcon("images/Re.svg"), QtGui.QIcon("images/ReHover.svg"))
+        self.ReloadTableButton = HoverButton(QtGui.QIcon("visual/images/Re.svg"), QtGui.QIcon("visual/images/ReHover.svg"))
         self.ReloadTableButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.ReloadTableButton.setObjectName("ReloadTableButton")
         self.gridLayout.addWidget(self.ReloadTableButton, 0, 0, 1, 1)
 
-        self.DeleteColumnButton = HoverButton(QtGui.QIcon("images/Minus.svg"), QtGui.QIcon("images/MinusHover.svg"))
+        self.DeleteColumnButton = HoverButton(QtGui.QIcon("visual/images/Minus.svg"), QtGui.QIcon("visual/images/MinusHover.svg"))
         self.DeleteColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.DeleteColumnButton.setObjectName("DeleteColumnButton")
         self.gridLayout.addWidget(self.DeleteColumnButton, 0, 4, 1, 1)
 
-        self.ReductColumnButton = HoverButton(QtGui.QIcon("images/Pen.svg"), QtGui.QIcon("images/PenHover.svg"))
+        self.ReductColumnButton = HoverButton(QtGui.QIcon("visual/images/Pen.svg"), QtGui.QIcon("visual/images/PenHover.svg"))
         self.ReductColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.ReductColumnButton.setObjectName("ReductColumnButton")
         self.gridLayout.addWidget(self.ReductColumnButton, 0, 3, 1, 1)
 
-        self.AddColumnButton = HoverButton(QtGui.QIcon("images/Plus.svg"), QtGui.QIcon("images/PlusHover.svg"))
+        self.AddColumnButton = HoverButton(QtGui.QIcon("visual/images/Plus.svg"), QtGui.QIcon("visual/images/PlusHover.svg"))
         self.AddColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.AddColumnButton.setObjectName("AddColumnButton")
         self.gridLayout.addWidget(self.AddColumnButton, 0, 2, 1, 1)
