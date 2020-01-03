@@ -1,12 +1,17 @@
+# import my oun widgets
 from visual.IMPORT.IMPORT import *
 from visual.widgets.table import TableStruct
 from visual.widgets.treeItem import TreeItem
 
+
 class MAIN(QtWidgets.QWidget):
+
     def resizeEvent(self, event):
-        self.treeWidget.setMaximumWidth(self.width()*0.25)
+        self.treeWidget.setMaximumWidth(self.width() * 0.25)
+        self.bar.setFixedWidth(self.width())
 
     def setupUi(self):
+        # set Interface of App
         self.setObjectName("main")
         self.resize(1080, 720)
         self.setMinimumSize(720, 360)
@@ -29,18 +34,18 @@ class MAIN(QtWidgets.QWidget):
         self.treeWidget.setContentsMargins(0, 0, 0, 0)
         self.treeWidget.setStyleSheet(
             "QWidget{"
-                "border: 0px;"
-                "padding: 0px;"
-                "margin: 0px;"
+            "border: 0px;"
+            "padding: 0px;"
+            "margin: 0px;"
             "}"
             "QTreeWidget{"
-                "border: 0px;"
-                "padding: 5px;"
-                "background-color: #FFF;"
+            "border: 0px;"
+            "padding: 5px;"
+            "background-color: #FFF;"
             "}"
         )
         self.Splitter.addWidget(self.treeWidget)
-        self.treeWidget.setMaximumWidth(self.width()*0.3)
+        self.treeWidget.setMaximumWidth(self.width() * 0.3)
 
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
@@ -50,7 +55,6 @@ class MAIN(QtWidgets.QWidget):
         self.Tab1 = TableStruct()
         self.Tab1.setObjectName("Tab1")
         self.tab.addTab(self.Tab1, "Structure")
-
 
         self.Tab2 = TableStruct()
         self.Tab2.setObjectName("Tab2")
@@ -66,117 +70,117 @@ class MAIN(QtWidgets.QWidget):
         self.TabWidget.setContentsMargins(0, 0, 0, 0)
         self.TabWidget.setStyleSheet(
             "QWidget{"
-                "border: 0px;"
-                "padding: 0px;"
-                "margin: 0px;"
+            "border: 0px;"
+            "padding: 0px;"
+            "margin: 0px;"
             "}"
 
-                'QTabWidget::pane {'
-                    'border-top: 1px solid #111;'
-                    'background: white;'
-                '}'
+            'QTabWidget::pane {'
+            'border-top: 1px solid #111;'
+            'background: white;'
+            '}'
 
-                'QTabWidget::tab-bar:top {'
-                    'top: 1px;'
-                '}'
+            'QTabWidget::tab-bar:top {'
+            'top: 1px;'
+            '}'
 
-                'QTabWidget::tab-bar:bottom {'
-                    'bottom: 0px;'
-                '}'
+            'QTabWidget::tab-bar:bottom {'
+            'bottom: 0px;'
+            '}'
 
-                'QTabWidget::tab-bar:left {'
-                    'right: 0px;'
-                '}'
+            'QTabWidget::tab-bar:left {'
+            'right: 0px;'
+            '}'
 
-                'QTabWidget::tab-bar:right {'
-                    'left: 0px;'
-                '}'
+            'QTabWidget::tab-bar:right {'
+            'left: 0px;'
+            '}'
 
-                'QTabBar::tab {'
-                    'border: 1px solid #111;'
-                    'font-size: 8pt;'
-                    'width: 80px;'
-                '}'
+            'QTabBar::tab {'
+            'border: 1px solid #111;'
+            'font-size: 8pt;'
+            'width: 80px;'
+            '}'
 
-                'QTabBar::tab:top:first{'
-                    'border-top-left-radius: 10px;'
-                '}'
+            'QTabBar::tab:top:first{'
+            'border-top-left-radius: 10px;'
+            '}'
 
-                'QTabBar::tab:top:last{'
-                    'border-top-right-radius: 10px;'
-                '}'
-                'QTabBar::tab:top:last:selected{'
-                    "right: 10px;"
-                    "width: 85px;"
-                '}'
-                'QTabBar::tab:top:first:selected{'
-                    "width: 85px;"
-                    "padding-left: 5px;"
-                '}'
-                'QTabBar::tab:top:selected{'
-                    "width: 85px;"
-                    "padding-right: 5px;"
-                '}'
-                'QTabBar::tab:selected {'
-                    'background: #111;'
-                    'border-top-left-radius: 1px;'
-                    'border-top-right-radius: 1px;'
-                '}'
+            'QTabBar::tab:top:last{'
+            'border-top-right-radius: 10px;'
+            '}'
+            'QTabBar::tab:top:last:selected{'
+            "right: 10px;"
+            "width: 85px;"
+            '}'
+            'QTabBar::tab:top:first:selected{'
+            "width: 85px;"
+            "padding-left: 5px;"
+            '}'
+            'QTabBar::tab:top:selected{'
+            "width: 85px;"
+            "padding-right: 5px;"
+            '}'
+            'QTabBar::tab:selected {'
+            'background: #111;'
+            'border-top-left-radius: 1px;'
+            'border-top-right-radius: 1px;'
+            '}'
 
-                'QTabBar::tab:!selected {'
-                    'background: silver;'
-                    'border: 0px;'
-                    'border-bottom: 1px solid black;'
-                '}'
+            'QTabBar::tab:!selected {'
+            'background: silver;'
+            'border: 0px;'
+            'border-bottom: 1px solid black;'
+            '}'
 
-                'QTabBar::tab:!selected:hover {'
-                    f'background: #{self.HelpColor};'
-                '}'
+            'QTabBar::tab:!selected:hover {'
+            f'background: #{self.HelpColor};'
+            '}'
 
-                'QTabBar::tab:top:!selected {'
-                    'margin-top: 3px;'
-                '}'
+            'QTabBar::tab:top:!selected {'
+            'margin-top: 3px;'
+            '}'
 
-                'QTabBar::tab:bottom:!selected {'
-                    'margin-bottom: 3px;'
-                '}'
+            'QTabBar::tab:bottom:!selected {'
+            'margin-bottom: 3px;'
+            '}'
 
-                'QTabBar::tab:top, QTabBar::tab:bottom {'
-                    'min-width: 50px;'
-                    'margin-right: -1px;'
-                    'padding: 5px 10px 5px 10px;'
-                '}'
+            'QTabBar::tab:top, QTabBar::tab:bottom {'
+            'min-width: 50px;'
+            'margin-right: -1px;'
+            'padding: 5px 10px 5px 10px;'
+            '}'
 
-                'QTabBar::tab:top:selected {'
-                    'border-bottom-color: none;'
-                    'color: #FFF;'
-                '}'
+            'QTabBar::tab:top:selected {'
+            'border-bottom-color: none;'
+            'color: #FFF;'
+            '}'
 
-                'QTabBar::tab:bottom:selected {'
-                    'border-top-color: none;'
-                '}'
+            'QTabBar::tab:bottom:selected {'
+            'border-top-color: none;'
+            '}'
         )
         self.Splitter.addWidget(self.TabWidget)
         self.Splitter.setStyleSheet(
 
             "QSplitter::items{"
-                "border: 0px;"
-                "padding: 0px;"
-                "margin: 0px;"
-                "background-color: #FFF"
+            "border: 0px;"
+            "padding: 0px;"
+            "margin: 0px;"
+            "background-color: #FFF"
             "}"
 
             "QSplitter::handle"
             "{"
-                "padding: 0px;"
-                "margin: 0px;"
-                "border: 0.5px solid lightGray;"
+            "padding: 0px;"
+            "margin: 0px;"
+            "border: 0.5px solid lightGray;"
             "}"
             "QSplitter{"
-                "background-color: #FFF;"
+            "background-color: #FFF;"
             "}"
-            )
-        self.Splitter.setHandleWidth(0);
+        )
+        self.Splitter.setHandleWidth(0)
         self.Splitter.setContentsMargins(0, 0, 0, 0)
 
         self.horizontalLayout.addWidget(self.Splitter)
@@ -184,7 +188,6 @@ class MAIN(QtWidgets.QWidget):
 
         self.Tab1.initStyles(self.HelpColor)
         self.Tab2.initStyles(self.HelpColor)
-
 
         self.bar = QtWidgets.QMenuBar(self)
         self.bar.setFixedHeight(26)
@@ -203,71 +206,50 @@ class MAIN(QtWidgets.QWidget):
         self.actionClose = QtWidgets.QAction("Close", self)
         self.actionClose.setObjectName("actionClose")
         self.menuFile.addAction(self.actionClose)
-        
 
     def __init__(self):
         super(MAIN, self).__init__()
         self.setUp()
 
     def setUp(self):
-        self.setWindowTitle("Simple SQL")
-        self.setWindowIcon(QtGui.QIcon("visual/images/LogoBlack.svg"))
-        self.HelpColor = HELP_COLOR
-        self.borderColor2 = "lightGray"
-        self.treeBgColor = "FFF"
-        self.setupUi()
-        self.setStyleSheet(TOTAL_STYLE)
+        # set some importent things
+        self.setWindowTitle("Simple SQL") # App Name
+        self.setWindowIcon(QtGui.QIcon("visual/images/LogoBlack.svg")) # App Icon
+        self.HelpColor = HELP_COLOR # I use some colors: Black, White, Gray and Help-Color
+        self.setupUi() # create Interface
+        self.setStyleSheet(TOTAL_STYLE) # some widgets should be the same in all App
         self.tree.setColumnCount(1)
         self.tree.setStyleSheet(
             "QTreeWidget::item{"
-                "padding: 2px;"
-                "border-radius: 5px;"
-                "background: lightGray;"
-                "margin-bottom: 5px;"
+            "padding: 2px;"
+            "border-radius: 5px;"
+            "background: lightGray;"
+            "margin-bottom: 5px;"
             "}"
             "QTreeView::item:open{"
-                "background: #555;"
-                "color: #FFF"
+            "background: #555;"
+            "color: #FFF"
             "}"
             "QTreeView::item:!selected{"
-                "background: lightGray;"
+            "background: lightGray;"
             "}"
             "QTreeView:selected{"
-                "background: #111;"
-                "color: #FFF"
+            "background: #111;"
+            "color: #FFF"
             "}"
             "QTreeView::item:hover:!open{"
-                f"background: #{HELP_COLOR};"
+            f"background: #{HELP_COLOR};"
             "}"
             "QTreeView::item:open:!selected {"
-                "background: #555;"
+            "background: #555;"
             "}"
             "QTreeView::item:!open:selected {"
-                "background: #111;"
-                "color: #FFF;"
+            "background: #111;"
+            "color: #FFF;"
             "}"
             "QTreeWidget::branch{"
-                "margin-right: 5px;"
-                "margin-bottom: 5px;"
-            "}"
-            "QTreeView::branch:has-siblings:!adjoins-item{"
-                "image: none;"
-            "}"
-            "QTreeView::branch:!has-children:!has-siblings:adjoins-item {"
-                "image: none;"
-            "}"
-
-            "QTreeView::branch:has-siblings:adjoins-item{"
-                "image: none;"
-            "}"
-            "QTreeView::branch:has-children:!has-siblings:closed,"
-            "QTreeView::branch:closed:has-children:has-siblings {"
-            "    image: url(visual/images/SQL.svg);"
-            "}"
-
-            "QTreeView::branch:open:has-children:!has-siblings,"
-            "QTreeView::branch:open:has-children:has-siblings  {"
-            "        image: url(visual/images/SQL_ACTIVE.svg);"
+            "width: 0px;"
+            "image: none;"
             "}"
         )
 
@@ -281,4 +263,3 @@ if __name__ == '__main__':
     ex = MAIN()
     ex.show()
     sys.exit(app.exec_())
-

@@ -1,3 +1,6 @@
+# I want to have Icons on Buttons in my TableStruct.
+# I Create Class of Buttons with concrete Hover function
+# I Create it to change images on Buttons
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 
 class HoverButton(QtWidgets.QPushButton):

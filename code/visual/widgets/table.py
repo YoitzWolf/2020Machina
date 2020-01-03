@@ -1,3 +1,4 @@
+# My Personal Widget. Have Menu and QTableWidget
 from visual.widgets.hoverButton import HoverButton
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 

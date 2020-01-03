@@ -1,3 +1,3 @@
 # 2020Machina
- 2020. Smooth SQL database reader.
+ 2020. Simple SQL database reader.
  
