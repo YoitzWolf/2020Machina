@@ -4,7 +4,7 @@ import sqlite3
 import os
 
 
-HELP_COLOR = "EEB8EE"
+HELP_COLOR = "6D88B4" # "EEB8EE" # another help color? 
 
 MENU_STYLE = """
                 QMenu::item{
@@ -13,7 +13,8 @@ MENU_STYLE = """
                     background-color: transparent;
                 }
                 QMenu::item:selected {
-                    background: gray;
+                    background: #6D88B4;
+                    color: #FFF;
                 }
                 QMenu::item:pressed {
                     background: black;
@@ -31,7 +32,8 @@ BAR_STYLE = '''
                 border-radius: 3px;
             }
             QMenuBar::item:selected{
-                background: gray;
+                background: #6D88B4;
+                color: #FFF;
             }
             QMenuBar::item:selected{
                 background: black;

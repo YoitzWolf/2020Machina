@@ -7,7 +7,7 @@ from visual.widgets.treeItem import TreeItem
 class MAIN(QtWidgets.QWidget):
 
     def resizeEvent(self, event):
-        self.treeWidget.setMaximumWidth(self.width() * 0.25)
+        self.treeWidget.setMaximumWidth(self.width() * 0.3)
         self.bar.setFixedWidth(self.width())
 
     def setupUi(self):
@@ -135,6 +135,7 @@ class MAIN(QtWidgets.QWidget):
 
             'QTabBar::tab:!selected:hover {'
             f'background: #{self.HelpColor};'
+            'color: #FFF;'
             '}'
 
             'QTabBar::tab:top:!selected {'
@@ -196,6 +197,8 @@ class MAIN(QtWidgets.QWidget):
         self.menuHelp = self.bar.addMenu('Help')
         self.menuFile.setStyleSheet(MENU_STYLE)
         self.menuHelp.setStyleSheet(MENU_STYLE)
+        self.actionHelp =  QtWidgets.QAction("Help", self)
+        self.menuHelp.addAction(self.actionHelp)
 
         self.actionOpen = QtWidgets.QAction("Open", self)
         self.actionOpen.setObjectName("actionOpen")
@@ -213,11 +216,13 @@ class MAIN(QtWidgets.QWidget):
 
     def setUp(self):
         # set some importent things
-        self.setWindowTitle("Simple SQL") # App Name
-        self.setWindowIcon(QtGui.QIcon("visual/images/LogoBlack.svg")) # App Icon
-        self.HelpColor = HELP_COLOR # I use some colors: Black, White, Gray and Help-Color
-        self.setupUi() # create Interface
-        self.setStyleSheet(TOTAL_STYLE) # some widgets should be the same in all App
+        self.setWindowTitle("Simple SQLite")  # App Name
+        self.setWindowIcon(QtGui.QIcon(
+            "visual/images/LogoBlack.svg"))  # App Icon
+        self.HelpColor = HELP_COLOR  # I use some colors: Black, White, Gray and Help-Color
+        self.setupUi()  # create Interface
+        # some widgets should be the same in all App
+        self.setStyleSheet(TOTAL_STYLE)
         self.tree.setColumnCount(1)
         self.tree.setStyleSheet(
             "QTreeWidget::item{"
@@ -239,6 +244,7 @@ class MAIN(QtWidgets.QWidget):
             "}"
             "QTreeView::item:hover:!open{"
             f"background: #{HELP_COLOR};"
+            'color: #FFF;'
             "}"
             "QTreeView::item:open:!selected {"
             "background: #555;"

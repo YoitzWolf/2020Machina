@@ -24,7 +24,7 @@ class TableStruct(QtWidgets.QWidget):
 
         self.lineEdit = QtWidgets.QLineEdit()
         self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout.addWidget(self.lineEdit, 1, 2, 1, 2)
+        self.gridLayout.addWidget(self.lineEdit, 1, 2, 1, 5)
 
         
         self.line = QtWidgets.QFrame()
@@ -73,20 +73,20 @@ class TableStruct(QtWidgets.QWidget):
         self.ReloadTableButton.setObjectName("ReloadTableButton")
         self.gridLayout.addWidget(self.ReloadTableButton, 0, 0, 1, 1)
 
-        self.DeleteColumnButton = HoverButton(QtGui.QIcon("visual/images/Minus.svg"), QtGui.QIcon("visual/images/MinusHover.svg"))
-        self.DeleteColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.DeleteColumnButton.setObjectName("DeleteColumnButton")
-        self.gridLayout.addWidget(self.DeleteColumnButton, 0, 4, 1, 1)
+        self.DeleteRowButton = HoverButton(QtGui.QIcon("visual/images/Minus.svg"), QtGui.QIcon("visual/images/MinusHover.svg"))
+        self.DeleteRowButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.DeleteRowButton.setObjectName("DeleteRowButton")
+        self.gridLayout.addWidget(self.DeleteRowButton, 0, 4, 1, 1)
 
-        self.ReductColumnButton = HoverButton(QtGui.QIcon("visual/images/Pen.svg"), QtGui.QIcon("visual/images/PenHover.svg"))
-        self.ReductColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.ReductColumnButton.setObjectName("ReductColumnButton")
-        self.gridLayout.addWidget(self.ReductColumnButton, 0, 3, 1, 1)
+        self.ReductRowButton = HoverButton(QtGui.QIcon("visual/images/Pen.svg"), QtGui.QIcon("visual/images/PenHover.svg"))
+        self.ReductRowButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.ReductRowButton.setObjectName("ReductRowButton")
+        # self.gridLayout.addWidget(self.ReductRowButton, 0, 3, 1, 1)
 
-        self.AddColumnButton = HoverButton(QtGui.QIcon("visual/images/Plus.svg"), QtGui.QIcon("visual/images/PlusHover.svg"))
-        self.AddColumnButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        self.AddColumnButton.setObjectName("AddColumnButton")
-        self.gridLayout.addWidget(self.AddColumnButton, 0, 2, 1, 1)
+        self.AddRowButton = HoverButton(QtGui.QIcon("visual/images/Plus.svg"), QtGui.QIcon("visual/images/PlusHover.svg"))
+        self.AddRowButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.AddRowButton.setObjectName("AddRowButton")
+        self.gridLayout.addWidget(self.AddRowButton, 0, 2, 1, 1)
 
         self.setLayout(self.gridLayout)
 
