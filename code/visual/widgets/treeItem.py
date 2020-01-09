@@ -3,13 +3,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 import sqlite3 as sql
 
+
 class TreeItem(QtWidgets.QTreeWidgetItem):
+
     def createChildren(self):
         self.Tables = []
         if self.type == 'sql':
             self.base = sql.connect(self.DataBaseName)
             crs = self.base.cursor()
-            comm = list(crs.execute("SELECT name FROM sqlite_master WHERE type='table'"))
+            comm = list(crs.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'"))
             for i in comm:
                 self.Tables.append(TreeItem(i[0], self, "low"))
 

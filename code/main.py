@@ -3,7 +3,7 @@ from visual.IMPORT.IMPORT import *  # Import all packages I need
 import sqlite3 as sql
 from visual.mainWindow import MAIN
 from visual.widgets.treeItem import TreeItem
-from visual.widgets.errDialog import ErrorDialogue
+from visual.widgets.errDialog import ErrorDialogue, HelpDialogue
 
 DB_CLASSIC = ['*.db', '*.sqlite3', '*.sqlite']
 CSV_CLASSIC = ['*.csv']
@@ -232,20 +232,24 @@ class SimpleSQL(MAIN):
                         self.selectedTreeItem.DataBaseName)
                     dialog.exec_()
                     return None
-            deleteAll = "DELETE FROM {}".format(self.selectedTreeItem.DataBaseName)
+            deleteAll = "DELETE FROM {}".format(
+                self.selectedTreeItem.DataBaseName)
             crs.execute(deleteAll)
-            createNew = "INSERT INTO {} VALUES".format(self.selectedTreeItem.DataBaseName)
+            createNew = "INSERT INTO {} VALUES".format(
+                self.selectedTreeItem.DataBaseName)
             for i in range(self.Tab2.tableWidget.rowCount()):
                 createNew += " ("
                 for j in range(self.Tab1.tableWidget.rowCount()):
-                    createNew += "'" + self.Tab2.tableWidget.item(i, j).text() + "', "
+                    createNew += "'" + \
+                        self.Tab2.tableWidget.item(i, j).text() + "', "
                 createNew[:-2] + "), "
-            createNew = createNew[:-2] + ")" 
+            createNew = createNew[:-2] + ")"
             if self.Tab2.tableWidget.rowCount() > 0:
                 crs.execute(createNew)
             # save all in base
             base.commit()
-            index = self.tree.indexOfTopLevelItem(self.selectedTreeItem.parent())
+            index = self.tree.indexOfTopLevelItem(
+                self.selectedTreeItem.parent())
             item = self.tree.takeTopLevelItem(index)
             item.base = base
             item = item.reload()
@@ -351,8 +355,11 @@ class SimpleSQL(MAIN):
         try:
             tab.tableWidget.setRowCount(tab.tableWidget.rowCount() + 1)
             for i in range(tab.tableWidget.columnCount()):
-                tab.tableWidget.setItem(tab.tableWidget.rowCount(
-                ) - 1, i, QtWidgets.QTableWidgetItem(""))
+                tab.tableWidget.setItem(tab.tableWidget.rowCount() - 1,
+                                        i, QtWidgets.QTableWidgetItem(""))
+            tab.tableWidget.setItem(tab.tableWidget.rowCount() - 1, 3, QtWidgets.QTableWidgetItem("0"))
+            tab.tableWidget.setItem(tab.tableWidget.rowCount() - 1, 4, QtWidgets.QTableWidgetItem("NULL"))
+            tab.tableWidget.setItem(tab.tableWidget.rowCount() - 1, 5, QtWidgets.QTableWidgetItem("0"))
             if tab.tableWidget.columnCount() == 0:
                 tab.tableWidget.setRowCount(0)
             self.checkUpdate()
@@ -360,7 +367,9 @@ class SimpleSQL(MAIN):
             pass
 
     def DelRow(self, tab):
-        tab.tableWidget.setRowCount(max(0, tab.tableWidget.rowCount() - 1))
+        #tab.tableWidget.setRowCount(max(0, tab.tableWidget.rowCount() - 1))
+        if tab.tableWidget.rowCount() > 1:
+            tab.tableWidget.removeRow(tab.tableWidget.selectedItems()[0].row())
         self.checkUpdate()
 
     def chekMoveUpdate(self, a, b):
@@ -416,7 +425,7 @@ class SimpleSQL(MAIN):
         dialog = QtWidgets.QFileDialog(self, 'New file')
         dialog.setStyleSheet("background-color: #ddd;")
         ans = dialog.getSaveFileName(filter='; '.join(
-                self.DB) + ";;" + '; '.join(self.CSV) + ';;All files (*.*)')
+            self.DB) + ";;" + '; '.join(self.CSV) + ';;All files (*.*)')
         try:
             sql.connect(ans[0])
             if len(ans[0]) > 1:
@@ -436,6 +445,10 @@ class SimpleSQL(MAIN):
                         TreeItem(ans[0], self.tree, 'unk'))
         except OSError:
             ErrorDialogue(self, "PATH TO FILE ERROR :: INCORRECT WAY").exec_()
+
+    def help(self):
+        dialog = HelpDialogue(self)
+        dialog.show()
 
     def setActs(self):
         # Create actions of Buttons and Widgets
@@ -465,6 +478,7 @@ class SimpleSQL(MAIN):
         self.actionOpen.triggered.connect(self.Open)
         self.actionNew.triggered.connect(self.newBase)
         self.actionClose.triggered.connect(lambda: self.close())
+        self.actionHelp.triggered.connect(self.help)
 
     def DeleteSelectedItemFromTree(self, *args, item=None):
         if item is None:
@@ -494,7 +508,8 @@ class SimpleSQL(MAIN):
 
     def addTable(self, parent):
         crs = parent.base.cursor()
-        res = list(crs.execute("SELECT name FROM sqlite_master WHERE type='table'"))
+        res = list(crs.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"))
         s = self.nextName(res)
         crs.execute("CREATE TABLE {} (column)".format(s))
         parent.base.commit()

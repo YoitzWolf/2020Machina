@@ -62,7 +62,7 @@ class MAIN(QtWidgets.QWidget):
 
         self.Tab3 = QtWidgets.QWidget()
         self.Tab3.setObjectName("Tab3")
-        self.tab.addTab(self.Tab3, "Smth More")
+        # self.tab.addTab(self.Tab3, "Smth More")
 
         self.verticalLayout.addWidget(self.tab)
         self.TabWidget = QtWidgets.QWidget()
@@ -197,7 +197,7 @@ class MAIN(QtWidgets.QWidget):
         self.menuHelp = self.bar.addMenu('Help')
         self.menuFile.setStyleSheet(MENU_STYLE)
         self.menuHelp.setStyleSheet(MENU_STYLE)
-        self.actionHelp =  QtWidgets.QAction("Help", self)
+        self.actionHelp = QtWidgets.QAction("Help", self)
         self.menuHelp.addAction(self.actionHelp)
 
         self.actionOpen = QtWidgets.QAction("Open", self)
